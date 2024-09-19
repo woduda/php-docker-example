@@ -1,9 +1,9 @@
 FROM php:8.3.11-fpm
 
 RUN apt-get update && apt-get install -y \
-    git \
-    curl \
-    zip \
-    unzip
+    zlib1g-dev \
+    libpng-dev 
+
+RUN docker-php-ext-install pdo pdo_mysql gd
 
 WORKDIR /var/www

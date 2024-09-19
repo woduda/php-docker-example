@@ -1,5 +1,6 @@
 services:
   app: 
+    image: php-docker-example
     build: 
       context: ./
       dockerfile: ./docker/Dockerfile
