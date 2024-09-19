@@ -2,12 +2,12 @@ services:
   app: 
     build: 
       context: ./
-      dockerfile: Dockerfile
+      dockerfile: ./docker/Dockerfile
     container_name: php-docker-example-app
     restart: always
     working_dir: /var/www
     volumes:
-      - ../src:/var/www
+      - ./src:/var/www
   nginx:
     image: nginx:1.27.1-alpine
     container_name: php-docker-example-nginx
@@ -15,5 +15,5 @@ services:
     ports:
       - 8001:80
     volumes:
-      - ../src:/var/www
-      - ./nginx:/etc/nginx/conf.d
+      - ./src:/var/www
+      - ./docker/nginx:/etc/nginx/conf.d
