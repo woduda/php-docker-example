@@ -2,14 +2,12 @@ services:
   app: 
     image: php-docker-example
     build: 
-      context: ./
       dockerfile: ./docker/Dockerfile
     container_name: php-docker-example-app
     restart: always
-    working_dir: /var/www
     volumes:
       - /var/www/vendor
-      - ./:/var/www
+      - ./app:/var/www
   nginx:
     image: nginx:1.27.1-alpine
     container_name: php-docker-example-nginx
@@ -17,7 +15,7 @@ services:
     ports:
       - "80:80"
     volumes:
-      - .:/var/www
+      - ./app/public:/var/www/public
       - ./docker/nginx:/etc/nginx/conf.d
   database:
     image: mariadb:11.5
