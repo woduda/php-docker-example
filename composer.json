@@ -1,0 +1,24 @@
+{
+    "name": "woduda/php-docker-example",
+    "description": "PHP Docker Example configuration",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Wojciech Duda",
+            "email": "wo.duda@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^8.1",
+        "ext-pdo": "*",
+        "ext-pdo_mysql": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^11.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    }
+}

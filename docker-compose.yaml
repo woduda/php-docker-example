@@ -8,13 +8,30 @@ services:
     restart: always
     working_dir: /var/www
     volumes:
-      - ./src:/var/www
+      - /var/www/vendor
+      - ./:/var/www
   nginx:
     image: nginx:1.27.1-alpine
     container_name: php-docker-example-nginx
     restart: always
     ports:
-      - 8001:80
+      - "80:80"
     volumes:
-      - ./src:/var/www
+      - .:/var/www
       - ./docker/nginx:/etc/nginx/conf.d
+  database:
+    image: mariadb:11.5
+    container_name: php-docker-example-database
+    restart: unless-stopped
+    ports: 
+      - "3306:3306"
+    volumes:
+      - database_data:/var/lib/mysql
+    environment:
+      MARIADB_ROOT_PASSWORD: secret
+      MARIADB_USER: user
+      MARIADB_PASSWORD: secret
+      MARIADB_DATABASE: php_docker_example
+
+volumes:
+  database_data:
