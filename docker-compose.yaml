@@ -2,14 +2,13 @@ services:
   app: 
     image: php-docker-example
     build: 
-      dockerfile: ./docker/Dockerfile
+      dockerfile: ./docker/app/Dockerfile
     container_name: php-docker-example-app
     restart: always
     volumes:
-      - /var/www/vendor # required to prevent overwrite by next line
       - ./app:/var/www
   nginx:
-    image: nginx:1.27.1-alpine
+    image: nginx:1.27-alpine
     container_name: php-docker-example-nginx
     restart: always
     ports:

@@ -8,4 +8,5 @@ This is simple and typical configuration for PHP on Docker with PHP-FPM for deve
 2. Clone this repo.
 3. Change directory to `docker` subfolder.
 4. Run docker compose: `docker compose up -d`
-5. Navigate to `http://localhost` in your web browser.
+5. `docker exec php-docker-example-app composer install`
+6. Navigate to `http://localhost` in your web browser.
