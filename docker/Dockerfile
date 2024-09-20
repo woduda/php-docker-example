@@ -1,16 +1,18 @@
-FROM php:8.3-fpm
+FROM php:8.3-fpm-alpine
 
 WORKDIR /var/www
 
-RUN apt-get update && apt-get install -y \
+RUN apk update && apk add --no-cache \
     git \
     zip \
     unzip \
-    zlib1g-dev \
+    libzip-dev \
     libpng-dev \
-    libzip-dev
+    zlib-dev
 
 RUN docker-php-ext-install pdo pdo_mysql gd zip
+
+RUN rm -rf /var/cache/apk/*
 
 #ENV COMPOSER_ALLOW_SUPERUSER=1
 
