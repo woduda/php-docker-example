@@ -17,11 +17,11 @@ RUN rm -rf /var/cache/apk/*
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
 # copy only composer files because if they are not changed then docker cache is used also for composer install
-#COPY ./app/composer.* ./
+COPY ./composer.* .
 
-#RUN composer install --prefer-dist --no-dev --no-scripts --no-progress --no-interaction
+RUN composer install --prefer-dist --no-dev --no-scripts --no-progress --no-interaction
 
 # copy all app source files
-#COPY ./app .
+COPY . .
 
-#RUN composer dump-autoload --optimize
+RUN composer dump-autoload --optimize
