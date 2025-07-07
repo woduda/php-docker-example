@@ -1,20 +1,19 @@
 services:
   app: 
-    image: php-docker-example
+    image: woduda/php-docker-example
+    build: ./app
     environment:
       MYSQL_HOST: database
       MYSQL_PORT: ${MYSQL_PORT}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_USER: ${MYSQL_USER}
-    build: 
-      dockerfile: ./docker/app/Dockerfile
     container_name: php-docker-example-app
     restart: always
     volumes:
       - ./app:/var/www
   nginx:
-    image: nginx:1.27-alpine
+    image: nginx:latest
     container_name: php-docker-example-nginx
     restart: always
     ports:
@@ -23,7 +22,7 @@ services:
       - ./app/public:/var/www/public
       - ./docker/nginx:/etc/nginx/conf.d
   database:
-    image: mariadb:11.5
+    image: mariadb:lts
     container_name: php-docker-example-database
     restart: unless-stopped
     ports: 
